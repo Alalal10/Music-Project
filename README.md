@@ -1,3 +1,6 @@
+https://www.canva.com/design/DAGkhzww5nc/EmYck-VW2G91CyAUVjZeKg/view?utm_content=DAGkhzww5nc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h8af6023463
+
+
 # 🎵 Music Playlist Manager
 # 👤 Student Name: Akylbekova Alina
 # 📌 Project Description
