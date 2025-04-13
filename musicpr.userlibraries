@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="xerial.sqlite.jdbc">
+    <archive path="C:/Users/user/.m2/repository/org/xerial/sqlite-jdbc/3.42.0.0/sqlite-jdbc-3.42.0.0.jar" />
+  </library>
+</eclipse-userlibraries>
+
