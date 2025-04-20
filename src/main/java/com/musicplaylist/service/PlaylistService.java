@@ -113,7 +113,6 @@ public class PlaylistService {
                             rs.getInt("user_id"),
                             rs.getBoolean("is_favorite"));
 
-                    // ✅ передаем текущее соединение
                     playlist.getSongs().addAll(getSongsForPlaylist(playlist.getId(), conn));
                     playlists.add(playlist);
                 }

@@ -16,24 +16,4 @@ public class LogService {
             System.err.println("Failed to log action: " + e.getMessage());
         }
     }
-
-    public String getActivityLogs(int adminUserId) throws SQLException {
-        StringBuilder logs = new StringBuilder();
-        String sql = "SELECT * FROM activity_logs ORDER BY timestamp DESC LIMIT 50";
-
-        try (Connection conn = DatabaseService.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) {
-
-            logs.append("=== Recent Activity Logs ===\n");
-            while (rs.next()) {
-                logs.append(String.format("[%s] User %d: %s\n",
-                        rs.getTimestamp("timestamp"),
-                        rs.getInt("user_id"),
-                        rs.getString("action")));
-            }
-        }
-
-        return logs.toString();
-    }
 }

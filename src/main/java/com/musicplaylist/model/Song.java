@@ -15,7 +15,6 @@ public class Song {
         this.playlistId = playlistId;
     }
 
-    // Getters and Setters
     public int getId() { return id; }
     public String getTitle() { return title; }
     public String getArtist() { return artist; }

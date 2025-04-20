@@ -17,7 +17,6 @@ public class User {
         this.isActive = isActive;
     }
 
-    // Getters and Setters
     public int getId() { return id; }
     public String getUsername() { return username; }
     public String getEmail() { return email; }

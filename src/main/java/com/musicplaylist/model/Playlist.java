@@ -18,7 +18,6 @@ public class Playlist {
         this.songs = new ArrayList<>();
     }
 
-    // Getters and Setters
     public int getId() { return id; }
     public String getName() { return name; }
     public int getUserId() { return userId; }
