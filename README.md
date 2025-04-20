@@ -2,13 +2,13 @@ This is the link for presentation:
 https://www.canva.com/design/DAGkignaNDc/BYJUtytu-04_hkCyxmWYIA/edit?utm_content=DAGkignaNDc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
 
 
-# 🎵 Music Playlist Manager
-# 👤 Student Name: Akylbekova Alina
-# 📌 Project Description
+# Music Playlist Manager
+# Student Name: Akylbekova Alina
+# Project Description
 
 Java CLI Playlist Manager is a console-based Java application designed to help users manage their music playlists. Users can register, log in, create and edit playlists, add or remove songs, and save all their data to JSON files for later use. The application supports different user roles (regular users and administrators), each with specific permissions and access levels.
 
-# 🎯 Objectives
+# Objectives
 
 - The main objectives of this project are:
 
@@ -26,7 +26,7 @@ To demonstrate good coding practices using Java and object-oriented principles.
 
 To make the app user-friendly, maintainable, and extendable for future features.
 
-# ✅ Project Requirement List
+# Project Requirement List
 
 Here are 10 key features and requirements that guide the project development:
 
@@ -50,9 +50,9 @@ Delete Playlists — Users can delete playlists they no longer need.
 
 Save and Load Data (JSON) — All users and playlist data must be saved to and loaded from JSON files for persistence.
 
-# 🛠️ Technical Documentation
+# Technical Documentation
 
-# 📚 Data Structures
+# Data Structures
 - Class User
 
 Fields: username, password, role, playlists
@@ -81,7 +81,7 @@ Used for storing all data (users and their playlists).
 
 Read and write operations are handled using Gson (Google's library for JSON processing).
 
-# 🧠 Algorithms and Logic
+# Algorithms and Logic
 
 - Authentication
 
@@ -115,7 +115,7 @@ All data is serialized and deserialized using Gson.
 
 Files: users.json, playlists.json (if separated) or one combined data.json.
 
-# 🧩 Modules and Classes
+# Modules and Classes
 
 Class/Module	Purpose
 
@@ -133,7 +133,7 @@ Playlist.java:            	Playlist model
 
 Song.java:                 	Song model
 
-# 🚧 Challenges and Issues
+# Challenges and Issues
 
 Working with JSON
 
@@ -150,7 +150,7 @@ Editing Entities
 Initially, organizing the logic for searching and editing by titles was tricky — had to add helper methods in services to make it more efficient.
 
 
-# 💻 Sample User Inputs and Expected Outputs
+# Sample User Inputs and Expected Outputs
 
 # 1. User Registration
    
@@ -421,4 +421,3 @@ Each user has their own ID
     Enter user ID to delete: 3
     User deleted successfully.
 
-# Thank you for attention! 😊❤️
