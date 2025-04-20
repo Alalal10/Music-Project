@@ -6,25 +6,23 @@ https://www.canva.com/design/DAGkignaNDc/BYJUtytu-04_hkCyxmWYIA/edit?utm_content
 # Student Name: Akylbekova Alina
 # Project Description
 
-Java CLI Playlist Manager is a console-based Java application designed to help users manage their music playlists. Users can register, log in, create and edit playlists, add or remove songs, and save all their data to JSON files for later use. The application supports different user roles (regular users and administrators), each with specific permissions and access levels.
+Music Playlist Manager is a console-based Java application (CLI) that allows users to manage music playlists. Users can register, log in, create and edit playlists, and add or remove songs. The app features a role-based access system (regular users and administrators), action logging, and stores all data in a SQLite database using JDBC.
 
 # Objectives
 
-- The main objectives of this project are:
+Build a functional CLI application for managing music playlists
 
-To build a fully functional command-line interface (CLI) for managing music playlists.
+Implement user registration and login with validation
 
-To implement user registration and login functionality with proper validation.
+Support role-based access control (user / admin)
 
-To support role-based access control (user/admin).
+Allow CRUD operations on playlists and songs
 
-To allow users to create, update, and delete playlists and songs.
+Store data in a SQLite database via JDBC
 
-To ensure data persistence using JSON for saving and loading user and playlist data.
+Log user actions like registration, login, and deletions
 
-To demonstrate good coding practices using Java and object-oriented principles.
-
-To make the app user-friendly, maintainable, and extendable for future features.
+Follow clean code and object-oriented principles
 
 # Project Requirement List
 
@@ -48,106 +46,114 @@ Rename Songs — Users can edit song titles within a playlist.
 
 Delete Playlists — Users can delete playlists they no longer need.
 
-Save and Load Data (JSON) — All users and playlist data must be saved to and loaded from JSON files for persistence.
+Data persistence via SQLite database
 
 # Technical Documentation
+# Data Storage
 
-# Data Structures
-- Class User
+The app uses a SQLite database to store all data persistently.
 
-Fields: username, password, role, playlists
+JDBC (Java Database Connectivity) is used to connect and execute queries.
 
-Description: Represents a user of the application, including their credentials and playlists.
+All user, playlist, and song data is stored in corresponding tables in the database.
 
-Data Type: List of playlists (List<Playlist>)
+A LogService is used to track and store user actions like registration, login, and deletion.
 
-- Class Playlist
+# Data Structures (Java Classes)
 
-Fields: title, songs
+- User
 
-Description: Represents a music playlist, with functionality to add and remove songs.
+Fields: id, username, password, email, role, isActive
 
-Data Type: List of songs (List<Song>)
+Purpose: Represents a user of the application, with credentials and role (user or admin)
 
-- Class Song
+Stored in: users table in SQLite
 
-Fields: title, artist
+- Playlist
 
-Description: A simple model for a music track.
+Fields: id, userId, title
 
-- JSON Files
+Purpose: Represents a music playlist that belongs to a user
 
-Used for storing all data (users and their playlists).
+Stored in: playlists table in SQLite
 
-Read and write operations are handled using Gson (Google's library for JSON processing).
+- Song
 
-# Algorithms and Logic
+Fields: id, playlistId, title, artist, isFavorite
+
+Purpose: Represents a song inside a playlist
+
+Stored in: songs table in SQLite
+
+
+# Logic and Algorithms
 
 - Authentication
 
-Linear search through the list of users loaded from the JSON file.
+Search in users table by username and password.
 
-Comparison of the entered password with the stored one.
+Check that the account is marked as is_active = true.
 
 - Registration
 
-Check if the username is unique.
+Validate fields (username, password, email).
 
-Validate password length and role correctness.
+Check for unique username and email in the database.
 
-Add the new user to the list and save it back to JSON.
+Insert a new row into the users table with appropriate role.
+
+- Role Management
+  
+Users with role "admin" can:
+
+View all users
+
+Delete (deactivate) users
+
+See action logs
+
+Regular users can:
+
+Only manage their own playlists and songs
 
 - Playlist Management
+  
+Users can:
 
-Search for a playlist by its title.
+Create new playlists
 
-Add and remove songs from the playlist (List<Song>) with duplicate checks.
+Rename and delete their own playlists
 
-- Search and Edit
+Add, rename, and remove songs inside their playlists
 
-Use for-each loops and conditionals to search for songs or playlists by title.
+Uses user_id and playlist_id to establish relations between tables
 
-Modify fields of objects directly when a match is found.
+- Logging
+  
+Every action (registration, login, delete, etc.) is logged in a logs table.
 
-- Save/Load
+The LogService class handles inserting log entries into the database.
 
-All data is serialized and deserialized using Gson.
-
-Files: users.json, playlists.json (if separated) or one combined data.json.
 
 # Modules and Classes
 
-Class/Module	Purpose
+Class	Purpose
 
-App.java:	                  Entry point, CLI menu, command handling
+App.java:	Entry point, CLI menu, user interaction
 
-UserService.java:         	User registration, authentication, role management
+UserService.java:	Handles registration, login, deletion, validation, role checking
 
-PlaylistService.java:      	Playlist and song management (add, remove, edit)
+PlaylistService.java:	Manages playlists and songs (CRUD)
 
-JsonStorage.java:         	Load and save data to/from JSON
+DatabaseService.java:	Provides SQLite connection and database setup
 
-User.java:	                User model
+LogService.java:	Logs user actions into database
 
-Playlist.java:            	Playlist model
+User.java:	User model class
 
-Song.java:                 	Song model
+Playlist.java:	Playlist model class
 
-# Challenges and Issues
-
-Working with JSON
-
-Challenges with serializing nested structures (User → Playlist → Song).
-
-Needed to configure Gson to properly handle lists of objects.
-
-Role Management
-
-Implementing access control for administrators and regular users was challenging (for example, only admins can delete other users).
-
-Editing Entities
-
-Initially, organizing the logic for searching and editing by titles was tricky — had to add helper methods in services to make it more efficient.
+Song.java:	Song model class
 
 
 # Sample User Inputs and Expected Outputs
