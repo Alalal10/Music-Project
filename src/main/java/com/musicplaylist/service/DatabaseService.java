@@ -21,14 +21,13 @@ public class DatabaseService {
 
             String url = prop.getProperty("db.url", "jdbc:sqlite:musicp_laylist.db");
             connection = DriverManager.getConnection(url);
-            initializeDatabase();  // Инициализация базы данных должна происходить после получения соединения
+            initializeDatabase(); 
         }
         return connection;
     }
 
-    // Использование текущего соединения для инициализации базы данных
     private static void initializeDatabase() throws SQLException {
-        // Здесь можно использовать уже установленное соединение
+
         try (Statement stmt = connection.createStatement()) {
             stmt.execute("PRAGMA foreign_keys = ON");
 
