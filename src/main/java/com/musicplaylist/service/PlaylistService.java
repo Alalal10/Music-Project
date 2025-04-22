@@ -252,6 +252,7 @@ public class PlaylistService {
         }
     }
 
+
     public void removeFromFavorites(int playlistId, int userId) throws DatabaseException {
         String sql = "UPDATE playlists SET is_favorite = FALSE WHERE id = ? AND user_id = ?";
 

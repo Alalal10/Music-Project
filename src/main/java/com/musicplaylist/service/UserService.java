@@ -26,7 +26,7 @@ public class UserService {
 
         String role = "user";
         if (adminPassword != null && !adminPassword.isEmpty()) {
-            if (!"admin123".equals(adminPassword)) {
+            if (!"iamadmin".equals(adminPassword)) {
                 throw new InvalidInputException("Invalid admin password");
             }
             role = "admin";
@@ -60,7 +60,7 @@ public class UserService {
                 if (rs.next()) {
                     int id = rs.getInt(1);
                     logService.logAction(id, "REGISTER");
-                    return new User(id, username, password, email, role, true);
+                    return new User(id, username, password, email, role);
                 } else {
                     throw new DatabaseException("User creation failed - no ID obtained");
                 }
@@ -105,7 +105,7 @@ public class UserService {
     }
 
     public User login(String username, String password) throws DatabaseException, InvalidInputException {
-        String sql = "SELECT * FROM users WHERE username = ? AND password = ? AND is_active = TRUE";
+        String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
 
         try (Connection conn = DatabaseService.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -120,8 +120,7 @@ public class UserService {
                             rs.getString("username"),
                             rs.getString("password"),
                             rs.getString("email"),
-                            rs.getString("role"),
-                            rs.getBoolean("is_active"));
+                            rs.getString("role"));
 
                     logService.logAction(user.getId(), "LOGIN");
                     return user;
@@ -171,8 +170,8 @@ public class UserService {
                         rs.getString("username"),
                         rs.getString("password"),
                         rs.getString("email"),
-                        rs.getString("role"),
-                        rs.getBoolean("is_active")));
+                        rs.getString("role")));
+
             }
 
             return users;

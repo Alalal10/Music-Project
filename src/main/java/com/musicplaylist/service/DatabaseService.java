@@ -19,14 +19,16 @@ public class DatabaseService {
             } catch (IOException ignored) {
             }
 
-            String url = prop.getProperty("db.url", "jdbc:sqlite:music_playlist.db");
+            String url = prop.getProperty("db.url", "jdbc:sqlite:musicp_laylist.db");
             connection = DriverManager.getConnection(url);
-            initializeDatabase();
+            initializeDatabase();  // Инициализация базы данных должна происходить после получения соединения
         }
         return connection;
     }
 
+    // Использование текущего соединения для инициализации базы данных
     private static void initializeDatabase() throws SQLException {
+        // Здесь можно использовать уже установленное соединение
         try (Statement stmt = connection.createStatement()) {
             stmt.execute("PRAGMA foreign_keys = ON");
 
@@ -45,7 +47,6 @@ public class DatabaseService {
                     "is_favorite BOOLEAN NOT NULL DEFAULT FALSE," +
                     "FOREIGN KEY(user_id) REFERENCES users(id))");
 
-
             stmt.execute("CREATE TABLE IF NOT EXISTS songs (" +
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "title TEXT NOT NULL," +
@@ -58,9 +59,8 @@ public class DatabaseService {
                     "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                     "user_id INTEGER NOT NULL," +
                     "action TEXT NOT NULL," +
-                    "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP," +
+                    "timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP," +
                     "FOREIGN KEY(user_id) REFERENCES users(id))");
         }
     }
 }
-
